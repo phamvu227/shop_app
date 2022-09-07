@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/controllers/cart_controller.dart';
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   final String id;
   final String productId;
   final double price;
@@ -16,6 +16,19 @@ class CartItem extends StatelessWidget {
       this.quantity,
       this.title,
       );
+
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  late CartController cartController;
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    cartController = context.read<CartController>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +48,13 @@ class CartItem extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(5),
                 child: FittedBox(
-                  child: Text('\$$price'),
+                  child: Text('\$${widget.price}'),
                 ),
               ),
             ),
-            title: Text(title),
-            subtitle: Text('Total: \$$price'),
-            trailing: Text('$quantity x'),
+            title: Text(widget.title),
+            subtitle: Text('Total: \$${widget.price}'),
+            trailing: Text('${widget.quantity} x'),
           ),
         ),
       ),
@@ -61,6 +74,11 @@ class CartItem extends StatelessWidget {
             child: new Text("Yes"),
             onPressed: () {
               Navigator.pop(context);
+              if (widget.quantity > 1) {
+                cartController.deleteItem(widget.productId);
+              } else {
+                cartController.deteleAll(widget.productId);
+              }
             },
           ),
         ],
@@ -69,3 +87,7 @@ class CartItem extends StatelessWidget {
     );
   }
 }
+
+
+
+
