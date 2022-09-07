@@ -50,12 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             itemBuilder: (_) => [
               PopupMenuItem(
-                child: Text('Only Favorites'),
-                value: FilterOptions.Favorites,
-              ),
-              PopupMenuItem(
                 child: Text('Show All'),
                 value: FilterOptions.All,
+              ),
+              PopupMenuItem(
+                child: Text('Only Favorites'),
+                value: FilterOptions.Favorites,
               ),
               PopupMenuItem(
                 child: Text('Price < 30'),

@@ -33,10 +33,7 @@ class _CartScreenState extends State<CartScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const Text(
-                    'Total',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  const Text('Total', style: TextStyle(fontSize: 20),),
                   Spacer(),
                   Chip(
                     label: Text(
@@ -50,7 +47,7 @@ class _CartScreenState extends State<CartScreen> {
                   FlatButton(
                     child: Text('ORDER NOW'),
                     onPressed: () {
-                      // _readCartController.clear();
+                      _readCartController.clear();
                     },
                     textColor: Theme.of(context).primaryColor,
                   )
@@ -68,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                 _watchCartController.items.values.toList()[i].price,
                 _watchCartController.items.values.toList()[i].quantity,
                 _watchCartController.items.values.toList()[i].title,
-                  ),
+              ),
             ),
           )
         ],
